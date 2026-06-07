@@ -1,4 +1,4 @@
-import { imageAssets } from "@/data/site";
+import { serviceImages } from "@/data/site";
 
 export type Service = {
   slug: string;
@@ -21,7 +21,7 @@ export const services: Service[] = [
     shortTitle: "General Dentistry",
     description:
       "Preventive exams, cleanings, fillings, and everyday dental care for families and adults near Belmont Ave in Chicago.",
-    image: imageAssets.general,
+    image: serviceImages.generalDentistry,
     summary:
       "General dentistry is the foundation of long-term oral health. At Ethicadent, visits are designed to be clear, gentle, and practical, with prevention, diagnosis, and treatment planning handled in one calm setting.",
     whoItsFor: [
@@ -66,7 +66,7 @@ export const services: Service[] = [
     shortTitle: "Dental Implants",
     description:
       "Dental implant consultations and restorations for replacing missing teeth with stable, natural-looking results.",
-    image: imageAssets.implants,
+    image: serviceImages.dentalImplants,
     summary:
       "Dental implants can replace missing teeth without relying on removable dentures. They are designed to support chewing, preserve smile appearance, and help maintain facial structure when planned carefully.",
     whoItsFor: [
@@ -111,7 +111,7 @@ export const services: Service[] = [
     shortTitle: "Invisalign",
     description:
       "Clear aligner treatment for patients who want a straighter smile without traditional braces.",
-    image: imageAssets.invisalign,
+    image: serviceImages.invisalign,
     summary:
       "Invisalign uses a series of clear removable aligners to gradually move teeth. It is often a comfortable option for busy adults and teens who want discreet orthodontic treatment.",
     whoItsFor: [
@@ -156,7 +156,7 @@ export const services: Service[] = [
     shortTitle: "Cosmetic Dentistry",
     description:
       "Smile-focused dentistry including veneers, bonding, crowns, bridges, and whitening recommendations.",
-    image: imageAssets.cosmetic,
+    image: serviceImages.cosmeticDentistry,
     summary:
       "Cosmetic dentistry can improve the color, shape, alignment, and overall balance of your smile while protecting the health of your teeth and gums.",
     whoItsFor: [
@@ -201,7 +201,7 @@ export const services: Service[] = [
     shortTitle: "Teeth Whitening",
     description:
       "Professional whitening options for patients who want a brighter smile with dentist-guided care.",
-    image: imageAssets.whitening,
+    image: serviceImages.teethWhitening,
     summary:
       "Professional teeth whitening can brighten natural tooth enamel more predictably than over-the-counter products, especially when stains come from coffee, tea, wine, or age.",
     whoItsFor: [
@@ -246,7 +246,7 @@ export const services: Service[] = [
     shortTitle: "Root Canal Therapy",
     description:
       "Root canal treatment for dental pain, infection, and saving natural teeth whenever possible.",
-    image: imageAssets.rootCanal,
+    image: serviceImages.rootCanalTherapy,
     summary:
       "Root canal therapy removes infected or inflamed tissue from inside a tooth, relieves pain, and helps preserve the natural tooth structure.",
     whoItsFor: [
@@ -291,7 +291,7 @@ export const services: Service[] = [
     shortTitle: "Wisdom Teeth Extraction",
     description:
       "Evaluation and removal planning for wisdom teeth causing pain, crowding, infection risk, or eruption problems.",
-    image: imageAssets.wisdom,
+    image: serviceImages.wisdomTeethExtraction,
     summary:
       "Wisdom teeth can become impacted, painful, or hard to clean. A careful evaluation helps determine whether monitoring or removal is the right path.",
     whoItsFor: [
@@ -336,7 +336,7 @@ export const services: Service[] = [
     shortTitle: "Crown Lengthening",
     description:
       "Gum and tooth structure procedures that support restorative treatment or improve the appearance of a gummy smile.",
-    image: imageAssets.crown,
+    image: serviceImages.crownLengthening,
     summary:
       "Crown lengthening adjusts gum tissue and sometimes supporting bone to expose more tooth structure. It can help restore damaged teeth or improve smile proportions.",
     whoItsFor: [
@@ -381,7 +381,7 @@ export const services: Service[] = [
     shortTitle: "CBCT 3D Imaging",
     description:
       "Advanced 3D imaging used to support implant planning, oral surgery, endodontics, and precise diagnosis.",
-    image: imageAssets.cbct,
+    image: serviceImages.cbct3dImaging,
     summary:
       "CBCT imaging gives a three-dimensional view of teeth, bone, roots, and nearby anatomy. It helps the team plan more accurately when standard two-dimensional images are not enough.",
     whoItsFor: [

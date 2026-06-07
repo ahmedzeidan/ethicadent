@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CallToAction } from "@/components/CallToAction";
+import { ServiceCard } from "@/components/ServiceCard";
 import { HoursList } from "@/components/HoursList";
 import { PrivacyNotice } from "@/components/PrivacyNotice";
 import { blogPosts } from "@/data/blog";
@@ -75,12 +76,15 @@ export default function HomePage() {
         </div>
         <div className="section-inner service-grid">
           {services.slice(0, 6).map((service) => (
-            <Link className="service-card" key={service.slug} href={`/services/${service.slug}`}>
-              <img src={service.image} alt={`${service.shortTitle} at Ethicadent`} />
-              <h3>{service.shortTitle}</h3>
-              <p>{service.description}</p>
-              <span className="text-button">Learn more</span>
-            </Link>
+            <ServiceCard
+              key={service.slug}
+              href={`/services/${service.slug}`}
+              title={service.shortTitle}
+              description={service.description}
+              image={service.image}
+              imageAlt={`${service.shortTitle} at Ethicadent`}
+              actionLabel="Learn more"
+            />
           ))}
         </div>
       </section>
@@ -142,7 +146,7 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="section-inner blog-grid">
-          {blogPosts.map((post) => (
+          {blogPosts.slice(0, 3).map((post) => (
             <Link className="blog-card" key={post.slug} href={`/blog/${post.slug}`}>
               <img src={post.image} alt="" />
               <div className="blog-card-content">

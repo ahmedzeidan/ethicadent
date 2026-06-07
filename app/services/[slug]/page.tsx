@@ -121,9 +121,6 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             </div>
           </article>
           <aside className="sidebar" aria-label="Service contact details">
-            <div className="photo-frame sidebar-photo">
-              <img src={service.image} alt="" />
-            </div>
             <div className="info-panel">
               <h3>Schedule by phone</h3>
               <p>

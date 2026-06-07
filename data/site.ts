@@ -41,6 +41,16 @@ export const navigation = [
   { label: "Contact", href: "/contact" }
 ];
 
+export const blogImages = {
+  generalDentistry: "/assets/blog/general-dentistry.jpg",
+  dentalImplants: "/assets/blog/dental-implants.jpg",
+  cbct3dImaging: "/assets/blog/cbct-3d-imaging.jpg",
+  invisalign: "/assets/blog/invisalign.jpg",
+  teethWhitening: "/assets/blog/teeth-whitening.jpg",
+  rootCanalTherapy: "/assets/blog/root-canal-therapy.jpg",
+  cosmeticDentistry: "/assets/blog/cosmetic-dentistry.jpg"
+};
+
 export const imageAssets = {
   logo: "/assets/brand/ethicadent-logo.jpg",
   favicon: "/assets/brand/favicon.jpg",
@@ -70,7 +80,7 @@ export const imageAssets = {
     dentalCertificate: "/assets/google-maps/dental-certificate.jpg",
     operatoryTechnology: "/assets/google-maps/operatory-technology.jpg",
     closeCareVisit: "/assets/google-maps/close-care-visit.jpg",
-    sterilizationStation: "/assets/google-maps/sterilization-station.jpg",
+    patientRefreshments: "/assets/google-maps/sterilization-station.jpg",
     smilePhotoReview: "/assets/google-maps/smile-photo-review.jpg",
     waitingLounge: "/assets/google-maps/waiting-lounge.jpg",
     cbctConsultation: "/assets/google-maps/cbct-consultation.jpg",
@@ -82,6 +92,18 @@ export const imageAssets = {
     belmontAvenueSign: "/assets/google-maps/belmont-avenue-sign.jpg",
     implantModelConsult: "/assets/google-maps/implant-model-consult.jpg"
   }
+};
+
+export const serviceImages = {
+  generalDentistry: imageAssets.googleMaps.closeCareVisit,
+  dentalImplants: imageAssets.googleMaps.implantModelConsult,
+  invisalign: imageAssets.googleMaps.smileScanConsult,
+  cosmeticDentistry: imageAssets.googleMaps.smilePhotoReview,
+  teethWhitening: imageAssets.googleMaps.gentleExamAction,
+  rootCanalTherapy: imageAssets.googleMaps.intraoralCameraClose,
+  wisdomTeethExtraction: imageAssets.googleMaps.cbctConsultation,
+  crownLengthening: imageAssets.googleMaps.intraoralCameraExam,
+  cbct3dImaging: imageAssets.googleMaps.cbctScanSmile
 };
 
 export const featuredPhotoStory = [
@@ -106,9 +128,9 @@ export const featuredPhotoStory = [
     label: "Modern treatment rooms"
   },
   {
-    src: imageAssets.googleMaps.sterilizationStation,
-    alt: "Ethicadent sterilization and clinical support area",
-    label: "Clean clinical systems"
+    src: imageAssets.googleMaps.patientRefreshments,
+    alt: "Ethicadent refreshment station with coffee, chilled water, and snacks for patients and families",
+    label: "Refreshments while you wait"
   },
   {
     src: imageAssets.googleMaps.belmontAvenueSign,

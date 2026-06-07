@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { CallToAction } from "@/components/CallToAction";
+import { ServiceCard } from "@/components/ServiceCard";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
@@ -25,12 +25,15 @@ export default function ServicesPage() {
       <section className="band soft">
         <div className="section-inner service-grid">
           {services.map((service) => (
-            <Link className="service-card" key={service.slug} href={`/services/${service.slug}`}>
-              <img src={service.image} alt={`${service.shortTitle} at Ethicadent`} />
-              <h3>{service.shortTitle}</h3>
-              <p>{service.description}</p>
-              <span className="text-button">Explore service</span>
-            </Link>
+            <ServiceCard
+              key={service.slug}
+              href={`/services/${service.slug}`}
+              title={service.shortTitle}
+              description={service.description}
+              image={service.image}
+              imageAlt={`${service.shortTitle} at Ethicadent`}
+              actionLabel="Explore service"
+            />
           ))}
         </div>
       </section>

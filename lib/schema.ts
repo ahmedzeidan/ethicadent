@@ -56,6 +56,35 @@ export function serviceSchema(name: string, description: string, path: string) {
   };
 }
 
+export function articleSchema(article: {
+  title: string;
+  description: string;
+  path: string;
+  image: string;
+  date: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: article.title,
+    description: article.description,
+    image: `${baseUrl}${article.image}`,
+    datePublished: article.date,
+    dateModified: article.date,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${baseUrl}${article.path}`
+    },
+    author: {
+      "@type": "Person",
+      name: businessInfo.doctor
+    },
+    publisher: {
+      "@id": `${baseUrl}/#organization`
+    }
+  };
+}
+
 export function faqSchema(faqs: { question: string; answer: string }[]) {
   return {
     "@context": "https://schema.org",

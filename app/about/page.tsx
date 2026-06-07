@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CallToAction } from "@/components/CallToAction";
 import { PrivacyNotice } from "@/components/PrivacyNotice";
+import { ServiceCard } from "@/components/ServiceCard";
 import { businessInfo, imageAssets } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -69,30 +70,27 @@ export default function AboutPage() {
           </div>
         </div>
         <div className="section-inner service-grid">
-          <div className="service-card">
-            <img src={imageAssets.googleMaps.closeCareVisit} alt="Ethicadent clinician providing patient care" />
-            <h3>Compassionate care</h3>
-            <p>
-              Patients deserve to understand what is happening, why treatment is
-              recommended, and what choices are available.
-            </p>
-          </div>
-          <div className="service-card">
-            <img src={imageAssets.googleMaps.cbctScanSmile} alt="Patient positioned for CBCT 3D imaging at Ethicadent" />
-            <h3>Advanced planning</h3>
-            <p>
-              CBCT 3D imaging can support implant, surgical, endodontic, and
-              complex diagnostic decisions when appropriate.
-            </p>
-          </div>
-          <div className="service-card">
-            <img src={imageAssets.googleMaps.sterilizationStation} alt="Ethicadent clinical support and sterilization area" />
-            <h3>Privacy-aware website</h3>
-            <p>
-              The v1 site avoids patient forms and keeps sensitive health
-              information out of website submissions.
-            </p>
-          </div>
+          <ServiceCard
+            title="Compassionate care"
+            description="Patients deserve to understand what is happening, why treatment is recommended, and what choices are available."
+            image={imageAssets.googleMaps.closeCareVisit}
+            imageAlt="Ethicadent clinician providing patient care"
+            actionLabel=""
+          />
+          <ServiceCard
+            title="Advanced planning"
+            description="CBCT 3D imaging can support implant, surgical, endodontic, and complex diagnostic decisions when appropriate."
+            image={imageAssets.googleMaps.cbctScanSmile}
+            imageAlt="Patient positioned for CBCT 3D imaging at Ethicadent"
+            actionLabel=""
+          />
+          <ServiceCard
+            title="Privacy-aware website"
+            description="The v1 site avoids patient forms and keeps sensitive health information out of website submissions."
+            image={imageAssets.googleMaps.waitingLounge}
+            imageAlt="Ethicadent comfortable waiting lounge for patients and families"
+            actionLabel=""
+          />
         </div>
       </section>
       <PrivacyNotice />
