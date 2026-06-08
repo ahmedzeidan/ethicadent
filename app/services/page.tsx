@@ -1,19 +1,26 @@
 import type { Metadata } from "next";
 import { CallToAction } from "@/components/CallToAction";
 import { ServiceCard } from "@/components/ServiceCard";
+import { BreadcrumbTrail } from "@/components/BreadcrumbTrail";
 import { services } from "@/data/services";
+import { homeBreadcrumb } from "@/lib/breadcrumbs";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Dental Services in Chicago",
   description:
-    "Explore Ethicadent Dental Studio services including general dentistry, implants, Invisalign, cosmetic care, whitening, root canals, wisdom teeth extraction, crown lengthening, and CBCT imaging."
-};
+    "Explore Ethicadent Dental Studio services including general dentistry, implants, Invisalign, cosmetic care, whitening, root canals, wisdom teeth extraction, crown lengthening, and CBCT imaging.",
+  path: "/services"
+});
 
 export default function ServicesPage() {
   return (
     <>
       <section className="page-hero">
         <div className="section-inner">
+          <BreadcrumbTrail
+            items={homeBreadcrumb({ name: "Services", path: "/services" })}
+          />
           <h1>Dental Services in Chicago</h1>
           <p className="lead">
             Ethicadent offers a complete dental care foundation, from preventive

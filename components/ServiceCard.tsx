@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ContentImage } from "@/components/ContentImage";
 
 type ServiceCardProps = {
   href?: string;
@@ -20,7 +21,7 @@ export function ServiceCard({
   const content = (
     <>
       <div className="service-card-media">
-        <img src={image} alt={imageAlt} loading="lazy" />
+        <ContentImage src={image} alt={imageAlt} variant="card" />
       </div>
       <div className="service-card-content">
         <h3>{title}</h3>

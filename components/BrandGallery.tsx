@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { ContentImage } from "@/components/ContentImage";
 
 export type GalleryPhoto = {
   src: string;
@@ -115,7 +116,7 @@ export function BrandGallery({
               onClick={() => setActiveIndex(index)}
               aria-label={`View larger photo: ${photo.label}`}
             >
-              <img src={photo.src} alt={photo.alt} />
+              <ContentImage src={photo.src} alt={photo.alt} variant="gallery" />
               <span className="photo-story-expand" aria-hidden="true">
                 <ExpandIcon />
               </span>
@@ -171,7 +172,11 @@ export function BrandGallery({
               )}
 
               <figure className="gallery-lightbox-figure">
-                <img src={activePhoto.src} alt={activePhoto.alt} />
+                <ContentImage
+                  src={activePhoto.src}
+                  alt={activePhoto.alt}
+                  variant="galleryLightbox"
+                />
                 <figcaption className="gallery-lightbox-caption">
                   <span>{activePhoto.label}</span>
                   {hasMultiplePhotos && (

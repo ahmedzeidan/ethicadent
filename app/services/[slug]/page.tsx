@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CallToAction } from "@/components/CallToAction";
 import { CallButton } from "@/components/CallButton";
+import { BreadcrumbTrail } from "@/components/BreadcrumbTrail";
+import { ContentImage } from "@/components/ContentImage";
 import { businessInfo } from "@/data/site";
 import { getService, services } from "@/data/services";
+import { nestedBreadcrumb } from "@/lib/breadcrumbs";
 import { faqSchema, serviceSchema } from "@/lib/schema";
+import { pageMetadata } from "@/lib/metadata";
 
 type ServicePageProps = {
   params: Promise<{ slug: string }>;
@@ -22,18 +26,13 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     return {};
   }
 
-  return {
+  return pageMetadata({
     title: service.title,
     description: service.description,
-    alternates: {
-      canonical: `/services/${service.slug}`
-    },
-    openGraph: {
-      title: service.title,
-      description: service.description,
-      url: `/services/${service.slug}`
-    }
-  };
+    path: `/services/${service.slug}`,
+    ogImage: service.image,
+    ogImageAlt: `${service.shortTitle} at Ethicadent Dental Studio`
+  });
 }
 
 export default async function ServiceDetailPage({ params }: ServicePageProps) {
@@ -43,6 +42,11 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
   if (!service) {
     notFound();
   }
+
+  const breadcrumbItems = nestedBreadcrumb(
+    { name: "Services", path: "/services" },
+    { name: service.shortTitle, path: `/services/${service.slug}` }
+  );
 
   return (
     <>
@@ -58,6 +62,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       />
       <section className="page-hero detail-hero">
         <div className="section-inner">
+          <BreadcrumbTrail items={breadcrumbItems} />
           <h1>{service.title}</h1>
           <p className="lead">{service.description}</p>
           <div className="cta-row">
@@ -72,8 +77,12 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       <section className="band">
         <div className="section-inner service-detail-grid">
           <article className="service-body">
-            <div className="photo-frame">
-              <img src={service.image} alt={`${service.shortTitle} at Ethicadent`} />
+            <div className="photo-frame photo-frame-split">
+              <ContentImage
+                src={service.image}
+                alt={`${service.shortTitle} at Ethicadent`}
+                variant="split"
+              />
             </div>
             <div className="content-block">
               <h2>Overview</h2>

@@ -3,19 +3,27 @@ import { BrandGallery } from "@/components/BrandGallery";
 import { CallToAction } from "@/components/CallToAction";
 import { PrivacyNotice } from "@/components/PrivacyNotice";
 import { ServiceCard } from "@/components/ServiceCard";
+import { ContentImage } from "@/components/ContentImage";
+import { BreadcrumbTrail } from "@/components/BreadcrumbTrail";
 import { businessInfo, imageAssets } from "@/data/site";
+import { homeBreadcrumb } from "@/lib/breadcrumbs";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About Dr. Helin Derya Yildiz",
   description:
-    "Learn about Ethicadent Dental Studio, Dr. Helin Derya Yildiz, and the practice's gentle modern approach to Chicago dentistry."
-};
+    "Learn about Ethicadent Dental Studio, Dr. Helin Derya Yildiz, and the practice's gentle modern approach to Chicago dentistry.",
+  path: "/about"
+});
 
 export default function AboutPage() {
   return (
     <>
       <section className="page-hero">
         <div className="section-inner">
+          <BreadcrumbTrail
+            items={homeBreadcrumb({ name: "About", path: "/about" })}
+          />
           <h1>About Ethicadent Dental Studio</h1>
           <p className="lead">
             A Chicago dental office where high-quality care, modern technology,
@@ -25,8 +33,8 @@ export default function AboutPage() {
       </section>
       <section className="band">
         <div className="section-inner split-grid">
-          <div className="photo-frame">
-            <img src={imageAssets.banner} alt="Ethicadent dental studio" />
+          <div className="photo-frame photo-frame-split">
+            <ContentImage src={imageAssets.banner} alt="Ethicadent dental studio" variant="split" />
           </div>
           <div className="split-copy">
             <h2>{businessInfo.doctor}</h2>

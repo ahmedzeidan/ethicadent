@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CallToAction } from "@/components/CallToAction";
+import { BreadcrumbTrail } from "@/components/BreadcrumbTrail";
+import { ContentImage } from "@/components/ContentImage";
 import { blogPosts, getBlogPost } from "@/data/blog";
 import type { ContentBlock } from "@/data/blog";
+import { nestedBreadcrumb } from "@/lib/breadcrumbs";
 import { articleSchema } from "@/lib/schema";
+import { pageMetadata } from "@/lib/metadata";
 
 type BlogPageProps = {
   params: Promise<{ slug: string }>;
@@ -22,20 +26,14 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
     return {};
   }
 
-  return {
+  return pageMetadata({
     title: post.title,
     description: post.description,
-    alternates: {
-      canonical: `/blog/${post.slug}`
-    },
-    openGraph: {
-      type: "article",
-      title: post.title,
-      description: post.description,
-      url: `/blog/${post.slug}`,
-      images: [post.image]
-    }
-  };
+    path: `/blog/${post.slug}`,
+    ogImage: post.image,
+    ogImageAlt: post.title,
+    ogType: "article"
+  });
 }
 
 function ContentBlockView({ block }: { block: ContentBlock }) {
@@ -72,6 +70,11 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
     notFound();
   }
 
+  const breadcrumbItems = nestedBreadcrumb(
+    { name: "Blog", path: "/blog" },
+    { name: post.title, path: `/blog/${post.slug}` }
+  );
+
   return (
     <>
       <script
@@ -90,6 +93,7 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
       />
       <section className="page-hero detail-hero">
         <div className="section-inner">
+          <BreadcrumbTrail items={breadcrumbItems} />
           <h1>{post.title}</h1>
           <p className="lead">{post.description}</p>
         </div>
@@ -97,8 +101,8 @@ export default async function BlogDetailPage({ params }: BlogPageProps) {
       <section className="band">
         <div className="section-inner service-detail-grid">
           <article className="blog-body">
-            <div className="photo-frame">
-              <img src={post.image} alt={post.title} />
+            <div className="photo-frame photo-frame-split">
+              <ContentImage src={post.image} alt={post.title} variant="split" />
             </div>
             {post.sections.map((section, index) => (
               <div className="content-block" key={section.heading ?? `section-${index}`}>

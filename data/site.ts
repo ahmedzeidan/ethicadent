@@ -41,6 +41,12 @@ export const navigation = [
   { label: "Contact", href: "/contact" }
 ];
 
+export const patientInfoLinks = [
+  { label: "New Patients", href: "/new-patients" },
+  { label: "Insurance & Payment", href: "/insurance-and-payment" },
+  { label: "Privacy Policy", href: "/privacy-policy" }
+];
+
 export const blogImages = {
   generalDentistry: "/assets/blog/general-dentistry.jpg",
   dentalImplants: "/assets/blog/dental-implants.jpg",
@@ -54,6 +60,7 @@ export const blogImages = {
 export const imageAssets = {
   logo: "/assets/brand/ethicadent-logo.jpg",
   favicon: "/assets/brand/favicon.jpg",
+  ogShare: "/assets/brand/og-share.jpg",
   hero: "/assets/google-maps/doctor-treatment-action.jpg",
   team: "/assets/photos/team.jpg",
   office: "/assets/photos/operator-room.jpg",

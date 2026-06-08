@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BrandGallery } from "@/components/BrandGallery";
 import { CallToAction } from "@/components/CallToAction";
 import { CallButton } from "@/components/CallButton";
+import { ContentImage } from "@/components/ContentImage";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { ServiceCard } from "@/components/ServiceCard";
 import { HoursList } from "@/components/HoursList";
@@ -11,12 +12,14 @@ import { blogPosts } from "@/data/blog";
 import { googleReviewStats } from "@/data/reviews";
 import { businessInfo, featuredPhotoStory, imageAssets } from "@/data/site";
 import { services } from "@/data/services";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Chicago Dentist on Belmont Ave",
   description:
-    "Ethicadent Dental Studio provides gentle general, cosmetic, implant, Invisalign, root canal, and 3D imaging dental care in Chicago."
-};
+    "Ethicadent Dental Studio provides gentle general, cosmetic, implant, Invisalign, root canal, and 3D imaging dental care in Chicago.",
+  path: "/"
+});
 
 export default function HomePage() {
   return (
@@ -50,8 +53,12 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className="photo-frame">
-            <img src={imageAssets.hero} alt="Ethicadent clinician caring for a patient" />
+          <div className="photo-frame photo-frame-hero">
+            <ContentImage
+              src={imageAssets.hero}
+              alt="Ethicadent clinician caring for a patient"
+              variant="hero"
+            />
           </div>
         </div>
       </section>
@@ -86,8 +93,12 @@ export default function HomePage() {
 
       <section className="band">
         <div className="section-inner split-grid">
-          <div className="photo-frame">
-            <img src={imageAssets.team} alt="Dr. Helin Derya Yildiz and the Ethicadent team" />
+          <div className="photo-frame photo-frame-split">
+            <ContentImage
+              src={imageAssets.team}
+              alt="Dr. Helin Derya Yildiz and the Ethicadent team"
+              variant="split"
+            />
           </div>
           <div className="split-copy">
             <h2>Care led by Dr. Helin Derya Yildiz</h2>
@@ -132,7 +143,9 @@ export default function HomePage() {
         <div className="section-inner blog-grid">
           {blogPosts.slice(0, 3).map((post) => (
             <Link className="blog-card" key={post.slug} href={`/blog/${post.slug}`}>
-              <img src={post.image} alt="" />
+              <div className="blog-card-media">
+                <ContentImage src={post.image} alt={post.title} variant="blog" />
+              </div>
               <div className="blog-card-content">
                 <h3>{post.title}</h3>
                 <p>{post.description}</p>

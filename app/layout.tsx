@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
 import { CallButton } from "@/components/CallButton";
+import { emailPrivacyWarning } from "@/components/EmailLink";
+import { FooterCopyright } from "@/components/FooterCopyright";
+import { ContentImage } from "@/components/ContentImage";
 import { MobileMenu } from "@/components/MobileMenu";
 import { SocialLinks } from "@/components/SocialLinks";
 import { PhoneIcon } from "@/components/icons";
-import { businessInfo, imageAssets, navigation, serviceLinks } from "@/data/site";
+import { businessInfo, imageAssets, navigation, patientInfoLinks, serviceLinks } from "@/data/site";
 import { localBusinessSchema } from "@/lib/schema";
+import { defaultOgAlt, defaultOgImage } from "@/lib/metadata";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ethicadent.com"),
@@ -28,7 +32,22 @@ export const metadata: Metadata = {
     title: "Ethicadent Dental Studio | Chicago Dentist on Belmont Ave",
     description:
       "Gentle, modern dental care from Dr. Helin Derya Yildiz at 6418 W Belmont Ave in Chicago.",
-    url: "/"
+    url: "/",
+    images: [
+      {
+        url: defaultOgImage,
+        width: 1200,
+        height: 630,
+        alt: defaultOgAlt
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ethicadent Dental Studio | Chicago Dentist on Belmont Ave",
+    description:
+      "Gentle, modern dental care from Dr. Helin Derya Yildiz at 6418 W Belmont Ave in Chicago.",
+    images: [defaultOgImage]
   }
 };
 
@@ -47,7 +66,7 @@ export default function RootLayout({
         <header className="site-header">
           <div className="header-inner">
             <Link className="brand" href="/" aria-label="Ethicadent home">
-              <img className="brand-logo" src={imageAssets.logo} alt="Ethicadent" />
+              <ContentImage src={imageAssets.logo} alt="Ethicadent" variant="logo" />
             </Link>
             <nav className="nav" aria-label="Main navigation">
               {navigation.map((item) => (
@@ -88,24 +107,38 @@ export default function RootLayout({
                 ))}
               </ul>
             </div>
-            <div>
-              <h3>Visit</h3>
+            <div className="footer-links-block">
+              <h3>Patient Info</h3>
               <ul>
                 <li>
                   <Link href="/contact">Contact</Link>
                 </li>
+                {patientInfoLinks.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href}>{item.label}</Link>
+                  </li>
+                ))}
                 <li>
                   <a href={businessInfo.mapsHref}>Directions</a>
                 </li>
                 <li>
-                  <a href={businessInfo.emailHref}>{businessInfo.email}</a>
+                  <a
+                    href={businessInfo.emailHref}
+                    aria-label={`Email office. ${emailPrivacyWarning}`}
+                  >
+                    {businessInfo.email}
+                  </a>
                 </li>
               </ul>
+              <p className="footer-email-note">{emailPrivacyWarning}</p>
             </div>
             <div>
               <h3>Follow</h3>
               <SocialLinks />
             </div>
+          </div>
+          <div className="section-inner footer-copyright-bar">
+            <FooterCopyright />
           </div>
         </footer>
       </body>
