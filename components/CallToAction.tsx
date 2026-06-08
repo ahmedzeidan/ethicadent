@@ -1,3 +1,4 @@
+import { CallButton } from "@/components/CallButton";
 import { businessInfo } from "@/data/site";
 
 type CallToActionProps = {
@@ -22,9 +23,7 @@ export function CallToAction({
             Speak directly with the team before sharing any sensitive health details.
           </p>
           <div className="cta-row">
-            <a className="button" href={businessInfo.phoneHref}>
-              {businessInfo.phone}
-            </a>
+            <CallButton>{businessInfo.phone}</CallButton>
             <a className="ghost-button" href={businessInfo.mapsHref}>
               Get Directions
             </a>

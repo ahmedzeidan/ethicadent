@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+import { CallButton } from "@/components/CallButton";
+import { MobileMenu } from "@/components/MobileMenu";
+import { SocialLinks } from "@/components/SocialLinks";
+import { PhoneIcon } from "@/components/icons";
 import { businessInfo, imageAssets, navigation, serviceLinks } from "@/data/site";
 import { localBusinessSchema } from "@/lib/schema";
 
@@ -53,10 +57,8 @@ export default function RootLayout({
               ))}
             </nav>
             <div className="header-actions">
-              <span className="mobile-menu">Menu</span>
-              <a className="button" href={businessInfo.phoneHref}>
-                Call
-              </a>
+              <CallButton className="button header-call">Call</CallButton>
+              <MobileMenu />
             </div>
           </div>
         </header>
@@ -70,7 +72,10 @@ export default function RootLayout({
                 {businessInfo.address}.
               </p>
               <p>
-                <a href={businessInfo.phoneHref}>{businessInfo.phone}</a>
+                <a className="footer-phone-link" href={businessInfo.phoneHref}>
+                  <PhoneIcon />
+                  {businessInfo.phone}
+                </a>
               </p>
             </div>
             <div>
@@ -99,13 +104,7 @@ export default function RootLayout({
             </div>
             <div>
               <h3>Follow</h3>
-              <ul>
-                {businessInfo.social.map((item) => (
-                  <li key={item.href}>
-                    <a href={item.href}>{item.label}</a>
-                  </li>
-                ))}
-              </ul>
+              <SocialLinks />
             </div>
           </div>
         </footer>

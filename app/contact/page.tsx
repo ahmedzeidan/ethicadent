@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { BrandGallery } from "@/components/BrandGallery";
+import { CallButton } from "@/components/CallButton";
 import { HoursList } from "@/components/HoursList";
 import { PrivacyNotice } from "@/components/PrivacyNotice";
 import { businessInfo, imageAssets } from "@/data/site";
@@ -20,9 +22,7 @@ export default function ContactPage() {
             not collect medical information or appointment requests.
           </p>
           <div className="cta-row">
-            <a className="button" href={businessInfo.phoneHref}>
-              {businessInfo.phone}
-            </a>
+            <CallButton>{businessInfo.phone}</CallButton>
             <a className="ghost-button" href={businessInfo.mapsHref}>
               Get Directions
             </a>
@@ -30,22 +30,26 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="brand-gallery" aria-label="Ethicadent location photos">
-        <div className="section-inner gallery-strip">
-          <figure className="photo-story-card">
-            <img src={imageAssets.googleMaps.belmontAvenueSign} alt="Ethicadent sign at 6418 W Belmont Ave in Chicago" />
-            <figcaption>6418 W Belmont Ave</figcaption>
-          </figure>
-          <figure className="photo-story-card">
-            <img src={imageAssets.googleMaps.waitingLounge} alt="Ethicadent waiting lounge" />
-            <figcaption>Comfortable waiting area</figcaption>
-          </figure>
-          <figure className="photo-story-card">
-            <img src={imageAssets.googleMaps.operatoryFull} alt="Ethicadent dental treatment room" />
-            <figcaption>Modern treatment room</figcaption>
-          </figure>
-        </div>
-      </section>
+      <BrandGallery
+        ariaLabel="Ethicadent location photos"
+        photos={[
+          {
+            src: imageAssets.googleMaps.belmontAvenueSign,
+            alt: "Ethicadent sign at 6418 W Belmont Ave in Chicago",
+            label: "6418 W Belmont Ave"
+          },
+          {
+            src: imageAssets.googleMaps.waitingLounge,
+            alt: "Ethicadent waiting lounge",
+            label: "Comfortable waiting area"
+          },
+          {
+            src: imageAssets.googleMaps.operatoryFull,
+            alt: "Ethicadent dental treatment room",
+            label: "Modern treatment room"
+          }
+        ]}
+      />
 
       <section className="band">
         <div className="section-inner contact-grid">
@@ -60,9 +64,7 @@ export default function ContactPage() {
             <h3>Office Information</h3>
             <p>{businessInfo.address}</p>
             <p>
-              <a className="text-button" href={businessInfo.phoneHref}>
-                {businessInfo.phone}
-              </a>
+              <CallButton className="text-button">{businessInfo.phone}</CallButton>
             </p>
             <p>
               <a className="text-button" href={businessInfo.emailHref}>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BrandGallery } from "@/components/BrandGallery";
 import { CallToAction } from "@/components/CallToAction";
 import { PrivacyNotice } from "@/components/PrivacyNotice";
 import { ServiceCard } from "@/components/ServiceCard";
@@ -42,30 +43,34 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <section className="brand-gallery" aria-label="Ethicadent credentials and care photos">
-        <div className="section-inner gallery-strip">
-          <figure className="photo-story-card">
-            <img src={imageAssets.googleMaps.dentalCertificate} alt="Dr. Helin Derya Yildiz dental credential certificate" />
-            <figcaption>Credentialed care</figcaption>
-          </figure>
-          <figure className="photo-story-card">
-            <img src={imageAssets.googleMaps.invisalignCertificate} alt="Invisalign certificate for Dr. Helin Yildiz" />
-            <figcaption>Invisalign experience</figcaption>
-          </figure>
-          <figure className="photo-story-card">
-            <img src={imageAssets.googleMaps.patientScreenReview} alt="Patient reviewing dental images with the Ethicadent team" />
-            <figcaption>Clear explanations</figcaption>
-          </figure>
-        </div>
-      </section>
+      <BrandGallery
+        ariaLabel="Ethicadent credentials and care photos"
+        photos={[
+          {
+            src: imageAssets.googleMaps.dentalCertificate,
+            alt: "Dr. Helin Derya Yildiz dental credential certificate",
+            label: "Credentialed care"
+          },
+          {
+            src: imageAssets.googleMaps.invisalignCertificate,
+            alt: "Invisalign certificate for Dr. Helin Yildiz",
+            label: "Invisalign experience"
+          },
+          {
+            src: imageAssets.googleMaps.patientScreenReview,
+            alt: "Patient reviewing dental images with the Ethicadent team",
+            label: "Clear explanations"
+          }
+        ]}
+      />
       <section className="band soft">
         <div className="section-inner section-head">
           <div>
             <h2>A Modern Local Practice</h2>
             <p>
               Ethicadent serves Chicago patients from {businessInfo.address}.
-              The rebuilt site puts that local trust signal at the center of the
-              experience.
+              Whether you need a routine cleaning or more advanced treatment,
+              the team is here to help you feel confident about your care.
             </p>
           </div>
         </div>
@@ -85,8 +90,8 @@ export default function AboutPage() {
             actionLabel=""
           />
           <ServiceCard
-            title="Privacy-aware website"
-            description="The v1 site avoids patient forms and keeps sensitive health information out of website submissions."
+            title="Comfortable environment"
+            description="A welcoming waiting area and a team focused on making every visit feel calm and respectful."
             image={imageAssets.googleMaps.waitingLounge}
             imageAlt="Ethicadent comfortable waiting lounge for patients and families"
             actionLabel=""

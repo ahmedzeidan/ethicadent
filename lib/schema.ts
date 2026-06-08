@@ -1,3 +1,4 @@
+import { featuredReviews, googleReviewStats } from "@/data/reviews";
 import { baseUrl, businessInfo } from "@/data/site";
 
 export const localBusinessSchema = {
@@ -36,7 +37,28 @@ export const localBusinessSchema = {
   founder: {
     "@type": "Person",
     name: businessInfo.doctor
-  }
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: googleReviewStats.rating.toString(),
+    reviewCount: googleReviewStats.count.toString(),
+    bestRating: "5",
+    worstRating: "1"
+  },
+  review: featuredReviews.map((review) => ({
+    "@type": "Review",
+    author: {
+      "@type": "Person",
+      name: review.author
+    },
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: review.rating.toString(),
+      bestRating: "5",
+      worstRating: "1"
+    },
+    reviewBody: review.text
+  }))
 };
 
 export function serviceSchema(name: string, description: string, path: string) {

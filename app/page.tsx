@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BrandGallery } from "@/components/BrandGallery";
 import { CallToAction } from "@/components/CallToAction";
+import { CallButton } from "@/components/CallButton";
+import { ReviewsSection } from "@/components/ReviewsSection";
 import { ServiceCard } from "@/components/ServiceCard";
 import { HoursList } from "@/components/HoursList";
 import { PrivacyNotice } from "@/components/PrivacyNotice";
 import { blogPosts } from "@/data/blog";
+import { googleReviewStats } from "@/data/reviews";
 import { businessInfo, featuredPhotoStory, imageAssets } from "@/data/site";
 import { services } from "@/data/services";
 
@@ -26,37 +30,28 @@ export default function HomePage() {
               Ethicadent team at {businessInfo.address}.
             </p>
             <div className="hero-actions">
-              <a className="button" href={businessInfo.phoneHref}>
-                Call the Office
-              </a>
+              <CallButton>Call the Office</CallButton>
               <a className="ghost-button" href={businessInfo.mapsHref}>
                 Get Directions
               </a>
             </div>
             <div className="hero-proof" aria-label="Practice highlights">
               <div className="proof-item">
-                <strong>Modern</strong>
-                <span>CBCT 3D imaging</span>
+                <strong>{googleReviewStats.rating}★ rated</strong>
+                <span>{googleReviewStats.count}+ Google reviews</span>
               </div>
               <div className="proof-item">
-                <strong>Gentle</strong>
-                <span>Compassionate visits</span>
+                <strong>Comfort-first</strong>
+                <span>Gentle care for anxious patients</span>
               </div>
               <div className="proof-item">
-                <strong>Local</strong>
-                <span>Belmont Ave, Chicago</span>
+                <strong>Full-service</strong>
+                <span>Implants, Invisalign & more</span>
               </div>
             </div>
           </div>
           <div className="photo-frame">
             <img src={imageAssets.hero} alt="Ethicadent clinician caring for a patient" />
-            <div className="hero-card">
-              <strong>Call-first scheduling</strong>
-              <p>
-                The v1 website avoids patient intake forms and keeps sensitive
-                health information out of web submissions.
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -66,8 +61,8 @@ export default function HomePage() {
           <div>
             <h2>Comprehensive Dental Services</h2>
             <p>
-              A stronger service architecture gives patients and search engines a
-              clear path from symptoms to care.
+              From preventive cleanings to implants and Invisalign, find the care
+              that fits your needs.
             </p>
           </div>
           <Link className="text-button" href="/services">
@@ -110,25 +105,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="brand-gallery" aria-label="Ethicadent office photos">
-        <div className="section-inner section-head">
-          <div>
-            <h2>Real Care, Real Office Photos</h2>
-            <p>
-              Imported Google Maps photos help patients see the team, technology,
-              and office environment before they call.
-            </p>
-          </div>
-        </div>
-        <div className="section-inner gallery-strip photo-story-grid">
-          {featuredPhotoStory.map((photo) => (
-            <figure key={photo.src} className="photo-story-card">
-              <img src={photo.src} alt={photo.alt} />
-              <figcaption>{photo.label}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
+      <ReviewsSection />
+
+      <BrandGallery
+        ariaLabel="Ethicadent office photos"
+        title="Real Care, Real Office Photos"
+        description="See the team, technology, and office environment before your visit."
+        photos={featuredPhotoStory}
+      />
 
       <PrivacyNotice />
 
@@ -137,8 +121,8 @@ export default function HomePage() {
           <div>
             <h2>Dental Education That Supports Decisions</h2>
             <p>
-              Reworked articles can answer high-intent patient questions while
-              supporting service page authority.
+              Practical guides on common dental topics to help you make informed
+              decisions about your care.
             </p>
           </div>
           <Link className="text-button" href="/blog">
@@ -167,9 +151,7 @@ export default function HomePage() {
               not send medical details through email.
             </p>
             <div className="cta-row">
-              <a className="button" href={businessInfo.phoneHref}>
-                {businessInfo.phone}
-              </a>
+              <CallButton>{businessInfo.phone}</CallButton>
               <a className="ghost-button" href={businessInfo.mapsHref}>
                 Directions
               </a>
