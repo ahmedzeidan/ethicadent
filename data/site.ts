@@ -98,19 +98,34 @@ export const imageAssets = {
     gentleExamAction: "/assets/google-maps/gentle-exam-action.jpg",
     belmontAvenueSign: "/assets/google-maps/belmont-avenue-sign.jpg",
     implantModelConsult: "/assets/google-maps/implant-model-consult.jpg"
+  },
+  clinical: {
+    brightLightTreatment: "/assets/New/50cde7a3-6771-4e76-9b43-548d8958cfe4.JPG",
+    instrumentTrayProcedure: "/assets/New/360a0138-1aa6-4f40-a109-129ad5b71cc7.JPG"
+  },
+  services: {
+    dentalImplantModel: "/assets/services/dental-implant-model.png",
+    invisalignAligner: "/assets/services/invisalign-aligner.png",
+    cosmeticDentistrySmile: "/assets/services/cosmetic-dentistry-smile.png",
+    teethWhiteningLight: "/assets/services/teeth-whitening-light.png",
+    rootCanalXray: "/assets/services/root-canal-xray.png",
+    wisdomTeethExtraction: "/assets/services/wisdom-teeth-extraction.png",
+    crownLengthening: "/assets/services/crown-lengthening.png",
+    generalDentistry: "/assets/services/general-dentistry.png",
+    cbct3dImaging: "/assets/services/cbct-3d-imaging.png"
   }
 };
 
 export const serviceImages = {
-  generalDentistry: imageAssets.googleMaps.closeCareVisit,
-  dentalImplants: imageAssets.googleMaps.implantModelConsult,
-  invisalign: imageAssets.googleMaps.smileScanConsult,
-  cosmeticDentistry: imageAssets.googleMaps.smilePhotoReview,
-  teethWhitening: imageAssets.googleMaps.gentleExamAction,
-  rootCanalTherapy: imageAssets.googleMaps.intraoralCameraClose,
-  wisdomTeethExtraction: imageAssets.googleMaps.cbctConsultation,
-  crownLengthening: imageAssets.googleMaps.intraoralCameraExam,
-  cbct3dImaging: imageAssets.googleMaps.cbctScanSmile
+  generalDentistry: imageAssets.services.generalDentistry,
+  dentalImplants: imageAssets.services.dentalImplantModel,
+  invisalign: imageAssets.services.invisalignAligner,
+  cosmeticDentistry: imageAssets.services.cosmeticDentistrySmile,
+  teethWhitening: imageAssets.services.teethWhiteningLight,
+  rootCanalTherapy: imageAssets.services.rootCanalXray,
+  wisdomTeethExtraction: imageAssets.services.wisdomTeethExtraction,
+  crownLengthening: imageAssets.services.crownLengthening,
+  cbct3dImaging: imageAssets.services.cbct3dImaging
 };
 
 export const featuredPhotoStory = [

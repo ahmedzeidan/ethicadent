@@ -6,8 +6,21 @@ export function FooterCopyright() {
   const year = new Date().getFullYear();
 
   return (
-    <p className="footer-copyright">
-      © {year} {businessInfo.name}. All rights reserved.
-    </p>
+    <div className="footer-copyright">
+      <p className="footer-copyright-text">
+        © {year} {businessInfo.name}. All rights reserved.
+      </p>
+      <p className="footer-credit">
+        Built by{" "}
+        <a
+          href="https://techrewire.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="footer-credit-link"
+        >
+          TechRewire.com
+        </a>
+      </p>
+    </div>
   );
 }

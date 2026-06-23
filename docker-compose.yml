@@ -1,0 +1,19 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3002:3000"
+    volumes:
+      # Bind-mount source for hot reload, but keep container-built
+      # node_modules and .next (these contain Linux-native binaries).
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+      # File-watching through a macOS bind mount needs polling for HMR.
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run dev -- --hostname 0.0.0.0

@@ -3,6 +3,8 @@
 A living document tracking what's been built and what we plan to build next for the
 Ethicadent Dental Studio website. Completed items are marked with ✅.
 
+_Last re-analyzed: June 10, 2026_
+
 > **Guiding constraint:** The site is static-first and HIPAA-conscious. Anything that
 > collects, stores, or transmits patient health information (forms, intake, portals,
 > reminders, chat that captures symptoms) requires a separate HIPAA implementation pass
@@ -25,9 +27,9 @@ Ethicadent Dental Studio website. Completed items are marked with ✅.
 - ✅ Home page with hero, services, team, reviews, gallery, blog teaser, hours
 - ✅ About page
 - ✅ Services index page
-- ✅ Service detail pages (General, Implants, Invisalign, Cosmetic, Whitening, Root Canal, Wisdom Teeth, Crown Lengthening, CBCT 3D Imaging)
-- ✅ Blog index + individual blog post pages
-- ✅ Contact page (call/directions/email, no PHI forms)
+- ✅ Service detail pages (General, Implants, Invisalign, Cosmetic, Whitening, Root Canal, Wisdom Teeth, Crown Lengthening, CBCT 3D Imaging) with overview, who-it's-for, process, benefits, aftercare, and FAQs
+- ✅ Blog index + individual blog post pages with related-service links
+- ✅ Contact page (call/directions/email, embedded map, location gallery — no PHI forms)
 - ✅ New Patients page
 - ✅ Insurance & Payment page
 - ✅ Privacy Policy page
@@ -41,40 +43,47 @@ Ethicadent Dental Studio website. Completed items are marked with ✅.
 
 ## 2. SEO & Structured Data
 
-- ✅ Per-page metadata helper (`lib/metadata.ts`)
-- ✅ Canonical URLs
+- ✅ Per-page metadata helper (`lib/metadata.ts`) with canonical URLs
 - ✅ Sitemap route (`app/sitemap.ts`)
 - ✅ Robots route (`app/robots.ts`)
 - ✅ LocalBusiness / Dentist schema (with aggregateRating + reviews)
-- ✅ Service schema
-- ✅ Article / BlogPosting schema
-- ✅ FAQ schema
-- ✅ Breadcrumb schema + breadcrumb UI
+- ✅ Service schema on every service page
+- ✅ Article / BlogPosting schema on blog posts
+- ✅ FAQ schema on service pages
+- ✅ Breadcrumb schema + breadcrumb UI on inner pages
 - ✅ Open Graph + Twitter card metadata with share image
-- ⏳ Per-page / per-service Open Graph images (currently one shared image)
+- ✅ Per-service and per-post Open Graph images (service/blog pages pass their own `ogImage`)
+- ✅ Old WordPress URL 301 redirects (`next.config.ts`)
+- ⏳ Verify legacy redirect map covers *all* old WordPress URLs (crawl old site / Search Console)
+- ⏳ Sitemap `lastModified` derived from real content dates (currently hardcoded to one date)
+- ⏳ Real per-post publish dates (all blog posts currently share the same date) + separate `dateModified`
+- ⏳ Dynamic OG image generation with `next/og` (branded card per page instead of photos)
 - ⏳ Image sitemap entries for gallery and service photos
-- ⏳ Old WordPress URL redirect map (verify all legacy URLs 301 to closest page)
+- ⏳ RSS/Atom feed for the blog
 - ⏳ `Physician` / `MedicalBusiness` schema enrichment (accepted insurance, payment methods)
 - ⏳ Google Business Profile alignment audit (NAP consistency)
+- ⏳ `hreflang` tags (once Spanish pages exist)
 
 ## 3. Content Growth
 
-- ✅ Initial blog library (general dentistry, implants, CBCT, Invisalign, whitening, root canal, cosmetic)
+- ✅ Initial blog library (general dentistry, implants, CBCT, Invisalign, whitening, root canal, cosmetic) with structured content blocks
 - ⏳ Convert content to MDX for easier authoring
 - ⏳ Editorial calendar: 1–2 new educational articles per month
+- ⏳ Blog niceties: visible publish dates, estimated reading time, related-posts section
 - ⏳ Spanish-language versions of key pages (large Chicago Spanish-speaking audience)
 - ⏳ Patient education resource downloads (post-op care PDFs, pre-visit checklists)
 - ⏳ Before/after cosmetic & Invisalign gallery (with consent + non-PHI handling)
 
 ## 4. Conversion & Engagement (privacy-safe)
 
-- ✅ Click-to-call buttons throughout
+- ✅ Click-to-call buttons throughout (header, hero, sidebars, footer, mobile menu)
 - ✅ Get Directions links to Google Maps
 - ✅ Email link paired with privacy warning
-- ✅ Reviews section + Google review stats
+- ✅ Reviews section + Google review stats (featured on home + schema)
+- ✅ Embedded Google Map on Contact page
+- ✅ Photo gallery with lightbox (office, team, technology)
 - ⏳ Sticky mobile "Call now" bar on scroll
 - ⏳ Click-to-text (SMS) link for quick non-PHI questions
-- ⏳ Embedded Google Map on Contact page
 - ⏳ Insurance carrier logo strip ("We accept…")
 - ⏳ Live Google reviews feed (auto-updating instead of static)
 - ⏳ Online scheduling integration (e.g., NexHealth / LocalMed / Dental Intelligence) — ⚠️ **HIPAA review required**
@@ -92,33 +101,38 @@ Ethicadent Dental Studio website. Completed items are marked with ✅.
 
 ## 6. UX, Design & Accessibility
 
-- ✅ Responsive layout + mobile menu
-- ✅ Brand gallery component
-- ✅ Reusable Service cards, CTA, hours list components
-- ⏳ WCAG 2.2 AA accessibility audit + fixes (contrast, focus states, ARIA, keyboard nav)
+- ✅ Responsive layout + accessible mobile menu (focus management, Escape to close, scroll lock, `aria-current`)
+- ✅ Brand gallery component with lightbox and focus-visible styles
+- ✅ Reusable ServiceCard, CallToAction, HoursList, Breadcrumb components
+- ✅ `prefers-reduced-motion` support
 - ⏳ Skip-to-content link
+- ⏳ Full WCAG 2.2 AA accessibility audit + fixes (contrast, ARIA, keyboard nav across all pages)
+- ⏳ Brand typography via `next/font` (currently default Arial/Helvetica stack)
 - ⏳ Dark mode (optional)
-- ⏳ Loading/skeleton states and refined image placeholders
-- ⏳ Reduced-motion support for animations
+- ⏳ Loading/skeleton states and refined image placeholders (blur-up)
 
 ## 7. Performance
 
-- ✅ Static-first rendering (no DB, no env vars required to build)
-- ⏳ Image optimization audit (formats, sizes, lazy loading via `next/image`)
-- ⏳ Font loading optimization
-- ⏳ Lighthouse score target: 95+ on all categories
+- ✅ Static-first rendering (no DB, no env vars required to build; `generateStaticParams` for dynamic routes)
+- ✅ Optimized images via `next/image` (responsive `sizes`, priority hero, lazy loading)
+- ✅ Lazy-loaded map iframe on Contact page
+- ⏳ Lighthouse score target: 95+ on all categories (run audit, fix findings)
 - ⏳ Bundle size review
+- ⏳ Convert source JPGs to modern formats / verify Vercel image optimization settings
 
 ## 8. Engineering, Quality & Ops
 
-- ✅ TypeScript throughout
+- ✅ TypeScript throughout, typed content models (`Service`, `BlogPost`, `TrustPage`)
+- ✅ Centralized business data (`data/site.ts`) consumed by pages, schema, and metadata
 - ✅ Playwright available as a dependency
-- ⏳ Automated Playwright smoke tests (pages render, CTAs present, no PHI forms)
-- ⏳ CI pipeline (lint + typecheck + build + tests on PR)
-- ⏳ Pin dependency versions (currently several use `latest`)
+- ⏳ Automated Playwright smoke tests (pages render, CTAs present, redirects work, no PHI forms)
+- ⏳ CI pipeline (lint + typecheck + build + tests on PR) — no `.github/workflows` yet
+- ⏳ Pin dependency versions (`next`, `react`, `typescript` currently use `latest`)
+- ⏳ Security headers in `next.config.ts` (CSP, HSTS, `X-Content-Type-Options`, `Referrer-Policy`)
+- ⏳ Proper favicon set + web app manifest (current favicon is a JPG; add ICO/PNG/SVG + `apple-touch-icon`)
 - ⏳ Error monitoring (e.g., Sentry) — configured to exclude PHI
-- ⏳ Preview deployments review checklist
 - ⏳ Automated link checker (catch broken internal/external links)
+- ⏳ Repo housekeeping: exclude `media from the current website/` source assets from the deployed repo
 
 ---
 

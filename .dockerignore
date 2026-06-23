@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+dist
+build
+.git
+.gitignore
+npm-debug.log*
+coverage
+playwright-report
+test-results
+.DS_Store
+*.swp
+media from the current website
